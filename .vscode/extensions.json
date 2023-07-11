@@ -4,6 +4,7 @@
     "burkeholland.simple-react-snippets",
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "standard.vscode-standard"
+    "standard.vscode-standard",
+    "moalamri.inline-fold"
   ]
 }
