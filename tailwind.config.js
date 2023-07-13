@@ -5,7 +5,14 @@ export default {
     './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      height: {
+        screen: '100dvh'
+      },
+      fontFamily: {
+        body: ['Abel', 'font-sans', 'system-ui']
+      }
+    }
   },
-  plugins: []
+  plugins: [require('daisyui')]
 }

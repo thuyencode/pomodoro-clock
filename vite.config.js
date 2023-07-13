@@ -1,13 +1,10 @@
-import { defineConfig } from 'vite'
-import million from 'million/compiler'
-import react from '@vitejs/plugin-react-swc'
 import legacy from '@vitejs/plugin-legacy'
+import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
-// https://million.dev/docs/install#use-the-compiler
 export default defineConfig({
   plugins: [
-    million.vite(),
     react(),
     legacy({
       targets: ['defaults', 'not IE 11']
