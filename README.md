@@ -9,6 +9,7 @@
 * [React](https://react.dev/)
 * [Tailwind CSS](https://tailwindcss.com/)
 * [daisyUI](https://daisyui.com/)
+* [Bootstrap Icons](https://icons.getbootstrap.com)
 * [Vite](https://vitejs.dev/)
 
 # How to build

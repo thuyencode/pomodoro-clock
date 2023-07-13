@@ -17,6 +17,7 @@ import { BREAK, SESSION } from './js/default-values'
 import initState from './js/initState'
 import INTERVAL_ID from './js/intervalId'
 import reducer from './js/reducer'
+import { Github } from 'react-bootstrap-icons'
 
 function App () {
   const ref = useRef(null)
@@ -101,62 +102,76 @@ function App () {
   }, [breakLength, onSession, sessionLength, timeLeft, timerOn])
 
   return (
-    <div
-      className={`flex h-screen flex-col items-center justify-center space-y-8 font-body ${
-        onSession ? 'bg-gray-950 text-gray-50' : 'bg-gray-50 text-gray-950'
-      }`}
-    >
-      <audio id="beep" src={clockBeep} ref={ref} hidden />
-      <h1 className="text-5xl">25 + 5 Clock</h1>
-      <div className="flex flex-col items-center space-y-8 sm:flex-row sm:space-x-8 sm:space-y-0">
-        <div className="flex flex-col space-y-4">
-          {/* Radial Progress */}
-          <Clock
-            percent={percent}
-            size={'11rem'}
-            thickness={'4px'}
-            onSession={onSession}
-            timeLeft={timeLeft}
-          />
+    <>
+      <div className="fixed top-0 z-10 flex w-full justify-center p-2">
+        <a
+          className={`btn-outline btn font-medium capitalize ${
+            onSession ? 'text-white' : 'text-gray-950'
+          }`}
+          href="https://github.com/thuyencode/pomodoro-clock"
+        >
+          <Github className="h-6 w-6" />
+          <span>Star me on Github</span>
+        </a>
+      </div>
 
-          {/* Control buttons */}
-          <div className="join justify-center">
-            {/* Start, pause */}
-            <Control
-              className="btn-neutral btn-sm join-item btn hover:text-white"
-              dispatch={() => dispatch({ type: START_PAUSE })}
-              timerOn={timerOn}
+      <div
+        className={`flex h-screen flex-col items-center justify-center space-y-8 font-body ${
+          onSession ? 'bg-gray-950 text-gray-50' : 'bg-gray-50 text-gray-950'
+        }`}
+      >
+        <audio id="beep" src={clockBeep} ref={ref} hidden />
+        <h1 className="text-5xl">25 + 5 Clock</h1>
+        <div className="flex flex-col items-center space-y-8 sm:flex-row sm:space-x-8 sm:space-y-0">
+          <div className="flex flex-col space-y-4">
+            {/* Radial Progress */}
+            <Clock
+              percent={percent}
+              size={'11rem'}
+              thickness={'4px'}
+              onSession={onSession}
+              timeLeft={timeLeft}
             />
 
-            {/* Reset */}
-            <Reset
-              className="btn-neutral btn-sm join-item btn hover:text-white"
-              dispatch={() => {
-                dispatch({ type: RESET })
-                setPercent(100)
-                // The only way I know to pass that mf "User Story #28"
-                document.getElementById('beep').pause()
-                document.getElementById('beep').currentTime = 0
-              }}
+            {/* Control buttons */}
+            <div className="join justify-center">
+              {/* Start, pause */}
+              <Control
+                className="btn-neutral btn-sm join-item btn hover:text-white"
+                dispatch={() => dispatch({ type: START_PAUSE })}
+                timerOn={timerOn}
+              />
+
+              {/* Reset */}
+              <Reset
+                className="btn-neutral btn-sm join-item btn hover:text-white"
+                dispatch={() => {
+                  dispatch({ type: RESET })
+                  setPercent(100)
+                  // The only way I know to pass that mf "User Story #28"
+                  document.getElementById('beep').pause()
+                  document.getElementById('beep').currentTime = 0
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex items-center justify-between space-x-4 sm:flex-col sm:space-x-0 sm:space-y-4">
+            <Length
+              id={BREAK}
+              types={[DECRE_BREAK_LEN, INCRE_BREAK_LEN]}
+              time={breakLength}
+              dispatch={dispatch}
+            />
+            <Length
+              id={SESSION}
+              types={[DECRE_SESSION_LEN, INCRE_SESSION_LEN]}
+              time={sessionLength}
+              dispatch={dispatch}
             />
           </div>
         </div>
-        <div className="flex items-center justify-between space-x-4 sm:flex-col sm:space-x-0 sm:space-y-4">
-          <Length
-            id={BREAK}
-            types={[DECRE_BREAK_LEN, INCRE_BREAK_LEN]}
-            time={breakLength}
-            dispatch={dispatch}
-          />
-          <Length
-            id={SESSION}
-            types={[DECRE_SESSION_LEN, INCRE_SESSION_LEN]}
-            time={sessionLength}
-            dispatch={dispatch}
-          />
-        </div>
       </div>
-    </div>
+    </>
   )
 }
 
