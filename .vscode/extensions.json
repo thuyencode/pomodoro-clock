@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "standard.vscode-standard",
-    "moalamri.inline-fold"
+    "moalamri.inline-fold",
+    "wix.glean"
   ]
 }
