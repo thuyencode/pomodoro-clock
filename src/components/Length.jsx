@@ -2,6 +2,14 @@ import PropTypes from 'prop-types'
 import { ArrowDown, ArrowUp } from 'react-bootstrap-icons'
 
 function Length ({ id, types, time, dispatch }) {
+  const dispatchDecre = () => {
+    return () => dispatch({ type: types[0] })
+  }
+
+  const dispatchIncre = () => {
+    return () => dispatch({ type: types[1] })
+  }
+
   return (
     <div>
       <h5
@@ -13,7 +21,7 @@ function Length ({ id, types, time, dispatch }) {
         <button
           id={`${id}-decrement`}
           className="btn-sm join-item btn px-1 btn-neutral hover:text-white"
-          onClick={() => dispatch({ type: types[0] })}
+          onClick={dispatchDecre()}
         >
           <ArrowDown className="h-5 w-5" />
         </button>
@@ -26,7 +34,7 @@ function Length ({ id, types, time, dispatch }) {
         <button
           id={`${id}-increment`}
           className="btn-sm join-item btn px-1 btn-neutral hover:text-white"
-          onClick={() => dispatch({ type: types[1] })}
+          onClick={dispatchIncre()}
         >
           <ArrowUp className="h-5 w-5" />
         </button>

@@ -2,6 +2,10 @@ import PropTypes from 'prop-types'
 import formatTime from '../js/formatTime'
 
 function Clock ({ percent, onSession, timeLeft }) {
+  const switchTitle = () => {
+    return onSession ? 'Session' : 'Break'
+  }
+
   return (
     <div
       className="radial-progress text-center"
@@ -12,7 +16,7 @@ function Clock ({ percent, onSession, timeLeft }) {
       }}
     >
       <h4 id="timer-label" className="mb-2 text-2xl">
-        {onSession ? 'Session' : 'Break'}
+        {switchTitle()}
       </h4>
       <h2 id="time-left" className="text-4xl">
         {formatTime(timeLeft)}

@@ -3,6 +3,7 @@ import clockBeep from './assets/audio/mixkit-alarm-clock-beep-988.wav'
 import Clock from './components/Clock'
 import Control from './components/Control'
 import Length from './components/Length'
+import NavBar from './components/NavBar'
 import Reset from './components/Reset'
 import {
   COUNTDOWN,
@@ -17,7 +18,6 @@ import { BREAK, SESSION } from './js/default-values'
 import initState from './js/initState'
 import INTERVAL_ID from './js/intervalId'
 import reducer from './js/reducer'
-import { Github } from 'react-bootstrap-icons'
 
 function App () {
   const ref = useRef(null)
@@ -26,6 +26,14 @@ function App () {
     dispatch
   ] = useReducer(reducer, initState)
   const [percent, setPercent] = useState(100)
+
+  const switchTheme = () => {
+    return onSession ? 'bg-gray-950 text-gray-50' : 'bg-gray-50 text-gray-950'
+  }
+
+  const dispatchStartPause = () => {
+    return () => dispatch({ type: START_PAUSE })
+  }
 
   useEffect(() => {
     const beep = ref.current
@@ -103,22 +111,10 @@ function App () {
 
   return (
     <>
-      <div className="fixed top-0 z-10 flex w-full justify-center p-2">
-        <a
-          className={`btn-outline btn font-medium capitalize ${
-            onSession ? 'text-white' : 'text-gray-950'
-          }`}
-          href="https://github.com/thuyencode/pomodoro-clock"
-        >
-          <Github className="h-6 w-6" />
-          <span>Star me on Github</span>
-        </a>
-      </div>
+      <NavBar onSession={onSession} />
 
       <div
-        className={`flex h-screen flex-col items-center justify-center space-y-8 font-body ${
-          onSession ? 'bg-gray-950 text-gray-50' : 'bg-gray-50 text-gray-950'
-        }`}
+        className={`flex h-screen flex-col items-center justify-center space-y-8 font-body ${switchTheme()}`}
       >
         <audio id="beep" src={clockBeep} ref={ref} hidden />
         <h1 className="text-5xl">25 + 5 Clock</h1>
@@ -127,8 +123,6 @@ function App () {
             {/* Radial Progress */}
             <Clock
               percent={percent}
-              size={'11rem'}
-              thickness={'4px'}
               onSession={onSession}
               timeLeft={timeLeft}
             />
@@ -138,7 +132,7 @@ function App () {
               {/* Start, pause */}
               <Control
                 className="btn-neutral btn-sm join-item btn hover:text-white"
-                dispatch={() => dispatch({ type: START_PAUSE })}
+                dispatch={dispatchStartPause()}
                 timerOn={timerOn}
               />
 
