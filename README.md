@@ -1,26 +1,27 @@
-# 25 + 5 (Pomodoro) Clock | A project for freeCodeCamp
+# React + TypeScript + Vite
 
-[![freeCodeCamp](https://img.shields.io/badge/Built%20for-freeCodeCamp-1f425f.svg?style=for-the-badge&logo=freecodecamp&logoColor=white)](https://www.freecodecamp.org/learn/front-end-development-libraries/front-end-development-libraries-projects/build-a-25--5-clock)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-[![Drum Machine's responsive design](https://i.ibb.co/tqKtmr2/Screenshot-2023-07-13-at-16-22-22-25-5-Clock-Thuyen-Code-free-Code-Camp.png)](https://ibb.co/zXxYnv2)
+Currently, two official plugins are available:
 
-### Tech Stack
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-* [React](https://react.dev/)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [daisyUI](https://daisyui.com/)
-* [Bootstrap Icons](https://icons.getbootstrap.com)
-* [Vite](https://vitejs.dev/)
+## Expanding the ESLint configuration
 
-# How to build
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
+- Configure the top-level `parserOptions` property like this:
+
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
 ```
-git clone https://github.com/thuyencode/pomodoro-clock
-cd calculator
-yarn install && yarn build
-```
 
-If you want live preview:
-```
-yarn dev
-```
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

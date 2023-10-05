@@ -18,11 +18,20 @@
     "tailwindCSS.classAttributes": [
       "class",
       "className",
-      "ngClass"
-    ],
-    "cSpell.words": [
-      "DECRE",
-      "INCRE"
+      "ngClass",
+      "defaultProps",
+      "styles"
+    ]
+  },
+  "extensions": {
+    "recommendations": [
+      "idered.npm",
+      "christian-kohler.npm-intellisense",
+      "moalamri.inline-fold",
+      "dbaeumer.vscode-eslint",
+      "formulahendry.auto-rename-tag",
+      "bradlc.vscode-tailwindcss",
+      "zignd.html-css-class-completion"
     ]
   }
 }
