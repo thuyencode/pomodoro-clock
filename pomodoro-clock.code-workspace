@@ -21,6 +21,10 @@
       "ngClass",
       "defaultProps",
       "styles"
+    ],
+    "cSpell.words": [
+      "daisyui",
+      "mixkit"
     ]
   },
   "extensions": {
